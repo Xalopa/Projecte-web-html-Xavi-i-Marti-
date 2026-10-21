@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XaviGames - Jocs gratuïts</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #101225;
+            color: white;
+        }
+
+        header {
+            background: #191c38;
+            padding: 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            color: #8c7bff;
+        }
+
+        .logo span {
+            color: #ffce55;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 8px;
+        }
+
+        .hero {
+            margin: 30px auto;
+            padding: 45px 20px;
+            width: 90%;
+            text-align: center;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #653bff, #e343c3, #ff8058);
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            margin-bottom: 20px;
+        }
+
+        .search {
+            width: 90%;
+            max-width: 450px;
+            padding: 15px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+        }
+
+        main {
+            width: 90%;
+            margin: 40px auto;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .category {
+            padding: 12px 18px;
+            background: #202441;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .category.active,
+        .category:hover {
+            background: #6c63ff;
+        }
+
+        .games {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 20px;
+        }
+
+        .game {
+            background: #1b1e38;
+            border-radius: 18px;
+            overflow: hidden;
+            transition: 0.2s;
+        }
+
+        .game:hover {
+            transform: translateY(-5px);
+        }
+
+        .game-image {
+            height: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 65px;
+        }
+
+        .purple { background: linear-gradient(135deg, #5c43df, #a15cf5); }
+        .green { background: linear-gradient(135deg, #119b76, #8de36b); }
+        .pink { background: linear-gradient(135deg, #d841a1, #ff8cbb); }
+        .orange { background: linear-gradient(135deg, #ff794f, #ffbd59); }
+        .blue { background: linear-gradient(135deg, #2478d4, #4bd4e8); }
+        .yellow { background: linear-gradient(135deg, #e9b52f, #fff078); }
+
+        .game-info {
+            padding: 15px;
+        }
+
+        .game-info h3 {
+            margin-bottom: 10px;
+        }
+
+        .game-info p {
+            color: #b5b9d7;
+            min-height: 40px;
+            font-size: 14px;
+        }
+
+        .play {
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #6c63ff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .play:hover {
+            background: #847cff;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 30px;
+            background: #191c38;
+            text-align: center;
+            line-height: 2;
+            color: #b5b9d7;
+        }
+
+        @media (max-width: 500px) {
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .games {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .game-image {
+                height: 100px;
+                font-size: 45px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">Xavi<span>Games</span> 🎮</div>
+        <nav>
+            <a href="#inici">Inici</a>
+            <a href="#jocs">Jocs</a>
+            <a href="#contacte">Contacte</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="inici">
+        <h1>Benvingut a XaviGames! 🚀</h1>
+        <p>Descobreix jocs divertits i posa a prova les teves habilitats.</p>
+        <input
+            type="search"
+            id="cercador"
+            class="search"
+            placeholder="🔎 Cerca el teu joc preferit..."
+        >
+    </section>
+
+    <main id="jocs">
+        <h2>🔥 Explora els jocs</h2>
+
+        <div class="categories">
+            <button class="category active" data-category="Tots">🎮 Tots</button>
+            <button class="category" data-category="Accio">⚔️ Acció</button>
+            <button class="category" data-category="Esports">⚽ Esports</button>
+            <button class="category" data-category="Puzles">🧩 Puzles</button>
+            <button class="category" data-category="Aventura">🗺️ Aventura</button>
+        </div>
+
+        <div class="games" id="llista-jocs">
+
+            <article class="game" data-category="Accio">
+                <div class="game-image purple">🚀</div>
+                <div class="game-info">
+                    <h3>Aventura espacial</h3>
+                    <p>Esquiva meteorits i explora l'espai.</p>
+                    <button class="play" onclick="jugar('espai')">Jugar ara ▶</button>
+                </div>
+            </article>
+
+            <article class="game" data-category="Esports">
+                <div class="game-image green">⚽</div>
+                <div class="game-info">
+                    <h3>Futbol Pro</h3>
+                    <p>Demostra les teves habilitats amb la pilota.</p>
+                    <button class="play" onclick="jugar('futbol')">Jugar ara ▶</button>
+                </div>
+            </article>
+
+            <article class="game" data-category="Puzles">
+                <div class="game-image pink">🧩</div>
+                <div class="game-info">
+                    <h3>Repte mental</h3>
+                    <p>Resol enigmes i posa a prova la teva ment.</p>
+                    <button class="play" onclick="jugar('puzle')">Jugar ara ▶</button>
+                </div>
+            </article>
+
+            <article class="game" data-category="Aventura">
+                <div class="game-image orange">🏝️</div>
+                <div class="game-info">
+                    <h3>Illa misteriosa</h3>
+                    <p>Descobreix els secrets d'una illa perduda.</p>
+                    <button class="play" onclick="jugar('illa')">Jugar ara ▶</button>
+                </div>
+            </article>
+
+            <article class="game" data-category="Accio">
+                <div class="game-image blue">🥷</div>
+                <div class="game-info">
+                    <h3>Ninja Run</h3>
+                    <p>Supera obstacles i aconsegueix punts.</p>
+                    <button class="play" onclick="jugar('ninja')">Jugar ara ▶</button>
+                </div>
+            </article>
+
+            <article class="game" data-category="Puzles">
+                <div class="game-image yellow">🧠</div>
+                <div class="game-info">
+                    <h3>Endevina el nombre</h3>
+                    <p>Troba el nombre secret abans d'esgotar els intents.</p>
+                    <button class="play" onclick="jugar('puzle')">Jugar ara ▶</button>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <footer id="contacte">
+        <h3>🎮 XaviGames</h3>
+        <p>La diversió comença aquí!</p>
+        <p>Projecte web creat per Xavi amb HTML, CSS i JavaScript.</p>
+    </footer>
+
+    <script>
+        const cercador = document.getElementById("cercador");
+        const jocs = document.querySelectorAll(".game");
+        const categories = document.querySelectorAll(".category");
+
+        let categoriaActual = "Tots";
+
+        function filtrarJocs() {
+            const text = cercador.value.toLowerCase().trim();
+
+            jocs.forEach(function(joc) {
+                const nom = joc.querySelector("h3").textContent.toLowerCase();
+                const descripcio = joc.querySelector("p").textContent.toLowerCase();
+
+                const coincideixText =
+                    nom.includes(text) || descripcio.includes(text);
+
+                const coincideixCategoria =
+                    categoriaActual === "Tots" ||
+                    joc.dataset.category === categoriaActual;
+
+                joc.style.display =
+                    coincideixText && coincideixCategoria ? "" : "none";
+            });
+        }
+
+        cercador.addEventListener("input", filtrarJocs);
+
+        categories.forEach(function(boto) {
+            boto.addEventListener("click", function() {
+                categories.forEach(function(element) {
+                    element.classList.remove("active");
+                });
+
+                boto.classList.add("active");
+                categoriaActual = boto.dataset.category;
+                filtrarJocs();
+            });
+        });
+
+        function jugar(nom) {
+            if (nom === "puzle") {
+                const secret = Math.floor(Math.random() * 20) + 1;
+                let intents = 5;
+
+                while (intents > 0) {
+                    const resposta = prompt(
+                        "Endevina un nombre de l'1 al 20. Intents: " + intents
+                    );
+
+                    if (resposta === null) return;
+
+                    const nombre = Number(resposta);
+
+                    if (!Number.isInteger(nombre) || nombre < 1 || nombre > 20) {
+                        alert("Introdueix un nombre vàlid.");
+                        continue;
+                    }
+
+                    if (nombre === secret) {
+                        alert("🎉 Has guanyat! Has encertat el nombre.");
+                        return;
+                    }
+
+                    alert(nombre < secret
+                        ? "El nombre secret és més gran!"
+                        : "El nombre secret és més petit!");
+
+                    intents--;
+                }
+
+                alert("S'han acabat els intents. El nombre era " + secret + ".");
+            } else {
+                alert("🎮 Aquest joc estarà disponible ben aviat!");
+            }
+        }
+    </script>
+
+</body>
+</html>
